@@ -6,6 +6,7 @@ import com.luxoft.sdemenkov.database.database.util.DbObjectSearcher;
 import com.luxoft.sdemenkov.database.server.util.RequestExecutor;
 import com.luxoft.sdemenkov.database.server.util.RequestHandler;
 import com.luxoft.sdemenkov.database.server.util.RequestParser;
+import com.luxoft.sdemenkov.database.server.util.ResponseWriter;
 import com.luxoft.sdemenkov.database.server.util.impl.RequestParserImpl;
 
 import java.io.*;
@@ -16,27 +17,24 @@ public class Server {
     private int port = 3000;
     private String rootResourceFolder;
     private RequestHandler requestHandler;
+    ResponseWriter responseWriter;
 
     public void start() {
         requestHandler = new RequestHandler();
         configure();
 
-        try (ServerSocket serverSocket = new ServerSocket(port)) {
+        try (ServerSocket serverSocket = new ServerSocket(port);
+             Socket socket = serverSocket.accept();
+             BufferedReader socketReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+             BufferedWriter socketWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))) {
+            requestHandler.setSocketReader(socketReader);
+            responseWriter.setWriter(socketWriter);
             while (true) {
-                try (Socket socket = serverSocket.accept();
-                     BufferedReader socketReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                     BufferedWriter socketWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()))
-                ) {
-                    try {
-                        requestHandler.setSocketReader(socketReader);
-                        requestHandler.setSocketWriter(socketWriter);
-                        requestHandler.handle();
-                    } catch (RuntimeException e) {
-                        socketWriter.write(e.getMessage());
-                        socketWriter.flush();
-                    }
+                try {
+                    requestHandler.handle();
+                } catch (RuntimeException e) {
+                    responseWriter.write(e.getMessage());
                 }
-
             }
         } catch (IOException e) {
             System.out.println(e);
@@ -50,11 +48,13 @@ public class Server {
         DbFactory factory = new DbFactoryXml();
         RequestParser parser = new RequestParserImpl();
         RequestExecutor executor = new RequestExecutor();
+        responseWriter = new ResponseWriter();
 
         searcher.setDbFactory(factory);
         searcher.setRootResourceFolder(rootResourceFolder);
 
         executor.setDbObjectSearcher(searcher);
+        executor.setResponseWriter(responseWriter);
 
         requestHandler.setRequestParser(parser);
         requestHandler.setRequestExecutor(executor);

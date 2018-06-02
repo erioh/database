@@ -14,11 +14,10 @@ import java.util.List;
 import java.util.Map;
 
 public class RequestExecutor {
-    private BufferedWriter socketWriter;
     private DbObjectSearcher dbObjectSearcher;
+    private ResponseWriter responseWriter;
 
     public void execute(Request request) {
-
         try {
             TargetType targetType = request.getTargetType();
             Map<String, String> requestParametersMap = request.getRequestParametersMap();
@@ -27,22 +26,20 @@ public class RequestExecutor {
             CommandType commandType = request.getCommandType();
             if (commandType == CommandType.SHOW) {
                 List<String> show = dbObject.show();
-                for (String result : show) {
-                    socketWriter.write(result);
-                }
+                responseWriter.write(show);
             }
             if (commandType == CommandType.CREATE) {
                 boolean isCreated = dbObject.create();
-                socketWriter.write(isCreated?"Object is created":"Object is not created");
+                responseWriter.write(isCreated ? "Object is created" : "Object is not created");
             }
             if (commandType == CommandType.DROP) {
                 boolean isDropped = dbObject.drop();
-                socketWriter.write(isDropped?"Object is dropped":"Object is not dropped");
+                responseWriter.write(isDropped ? "Object is dropped" : "Object is not dropped");
             }
             if (commandType == CommandType.INSERT) {
                 if (dbObject instanceof Table) {
                     boolean isInserted = ((Table) dbObject).insert();
-                    socketWriter.write(isInserted?"row is inserted":"row is not inserted");
+                    responseWriter.write(isInserted ? "row is inserted" : "row is not inserted");
                 } else {
                     throw new RuntimeException("INSERT can be applied only to TABLE");
                 }
@@ -50,26 +47,22 @@ public class RequestExecutor {
             if (commandType == CommandType.SELECT) {
                 if (dbObject instanceof Table) {
                     SelectResult result = ((Table) dbObject).select();
-                    socketWriter.write(result.toString());
+                    responseWriter.write(result);
                 } else {
                     throw new RuntimeException("SELECT can be applied only to TABLE");
                 }
             }
-            socketWriter.flush();
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
-
-    public void setSocketWriter(BufferedWriter socketWriter) {
-        this.socketWriter = socketWriter;
-    }
 
     public void setDbObjectSearcher(DbObjectSearcher dbObjectSearcher) {
         this.dbObjectSearcher = dbObjectSearcher;
+    }
+
+    public void setResponseWriter(ResponseWriter responseWriter) {
+        this.responseWriter = responseWriter;
     }
 }

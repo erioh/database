@@ -14,15 +14,16 @@ public class RequestParserImpl implements com.luxoft.sdemenkov.database.server.u
     @Override
     public Request parse(BufferedReader socketReader) {
         try {
-            CommandType commandType = CommandType.getByName(socketReader.readLine());
-            TargetType targetType = TargetType.getByName(socketReader.readLine());
-            Map<String, String> requestParametersMap = new HashMap<>();
+            String commandTypeValue = socketReader.readLine();
+            String targetTypeValue = socketReader.readLine();
             String value;
+            Map<String, String> requestParametersMap = new HashMap<>();
             while (!"end".equalsIgnoreCase(value = socketReader.readLine())) {
                 String[] keyValue = value.split(":");
-                requestParametersMap.put(keyValue[0],keyValue[1]);
-
+                requestParametersMap.put(keyValue[0], keyValue[1]);
             }
+            CommandType commandType = CommandType.getByName(commandTypeValue);
+            TargetType targetType = TargetType.getByName(targetTypeValue);
             return new Request(commandType, targetType, requestParametersMap);
         } catch (IOException e) {
             throw new RuntimeException(e);

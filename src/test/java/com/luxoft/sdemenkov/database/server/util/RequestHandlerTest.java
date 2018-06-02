@@ -32,7 +32,6 @@ public class RequestHandlerTest {
         requestExecutor = new MockRequestExecutor();
         handler = new RequestHandler();
         handler.setSocketReader(reader);
-        handler.setSocketWriter(writer);
         handler.setRequestParser(requestParser);
         handler.setRequestExecutor(requestExecutor);
 

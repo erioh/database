@@ -38,7 +38,7 @@ public class SchemaXml implements Schema {
 
     @Override
     public List<String> show() {
-        String[] list = file.list();
+        String[] list = file.list((file, name) -> !name.toLowerCase().endsWith("_meta.xml"));
         List<String> tableList = new ArrayList<>();
         if (list != null) {
             Collections.addAll(tableList, list);

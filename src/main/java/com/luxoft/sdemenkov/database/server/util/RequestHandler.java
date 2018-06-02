@@ -7,13 +7,11 @@ import java.io.BufferedWriter;
 
 public class RequestHandler {
     private BufferedReader socketReader;
-    private BufferedWriter socketWriter;
     private RequestParser requestParser;
     private RequestExecutor requestExecutor;
 
     public void handle() {
         Request request = requestParser.parse(socketReader);
-        requestExecutor.setSocketWriter(socketWriter);
         requestExecutor.execute(request);
     }
 
@@ -23,10 +21,6 @@ public class RequestHandler {
 
     public void setRequestExecutor(RequestExecutor requestExecutor) {
         this.requestExecutor = requestExecutor;
-    }
-
-    public void setSocketWriter(BufferedWriter socketWriter) {
-        this.socketWriter = socketWriter;
     }
 
     public void setRequestParser(RequestParser requestParser) {

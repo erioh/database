@@ -41,10 +41,14 @@ public class TableXml implements Table {
 
     @Override
     public boolean create() {
+        if (exists()){
+            throw new RuntimeException("Table "+tableFile.getName()+" is already created");
+        }
         return createMetadata() && createTable();
     }
 
     public boolean createMetadata() {
+
         try {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.newDocument();
@@ -125,7 +129,6 @@ public class TableXml implements Table {
             Element documentElement = document.getDocumentElement();
             String root = documentElement.getTagName();
             List<String> listOfNodes = new ArrayList<>();
-            listOfNodes.add(root);
             NodeList childNodes = documentElement.getChildNodes();
             int length = childNodes.getLength();
             for (int i = 0; i < length; i++) {
@@ -159,6 +162,10 @@ public class TableXml implements Table {
                 throw new RuntimeException("Column " + column + " doesn't exists in table " + tableFile.getName());
             }
         }
+        if (columns.length != nodeList.size()){
+            throw new RuntimeException("not all collumns are provided");
+        }
+
         try {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(tableFile);

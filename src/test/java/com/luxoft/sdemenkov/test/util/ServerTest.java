@@ -1,5 +1,6 @@
-package com.luxoft.sdemenkov.database.server;
+package com.luxoft.sdemenkov.test.util;
 
+import com.luxoft.sdemenkov.database.server.Server;
 import org.junit.Ignore;
 import org.junit.Test;
 

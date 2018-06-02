@@ -35,9 +35,11 @@ public class RequestExecutorTest {
         requestExecutor = new RequestExecutor();
         OutputStream outputStream = new ByteArrayOutputStream();
         socketWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+        ResponseWriter responseWriter = new ResponseWriter();
+        responseWriter.setWriter(socketWriter);
         DbObjectSearcher dbObjectSearcher = new MockDbObjectSearcher();
-        requestExecutor.setSocketWriter(socketWriter);
         requestExecutor.setDbObjectSearcher(dbObjectSearcher);
+        requestExecutor.setResponseWriter(responseWriter);
     }
 
     @After

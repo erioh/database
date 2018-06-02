@@ -12,15 +12,18 @@ public class MockClient {
              BufferedReader socketReader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
 
             String value;
-            StringJoiner joiner = new StringJoiner("\r\n");
-            while (!(value = consoleReader.readLine()).equalsIgnoreCase("send")) {
-                joiner.add(value);
-            }
-            socketWriter.write(joiner.toString());
-            socketWriter.flush();
-            String valueIn;
-            while ((valueIn = socketReader.readLine()) != null) {
-                System.out.println(valueIn);
+            while (true) {
+                StringBuilder builder = new StringBuilder();
+                while (!(value = consoleReader.readLine()).equalsIgnoreCase("send")) {
+                    builder.append(value);
+                    builder.append("\r\n");
+                }
+                socketWriter.write(builder.toString());
+                socketWriter.flush();
+                String valueIn;
+                while (!"".equals(valueIn = socketReader.readLine())) {
+                    System.out.println(valueIn);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
