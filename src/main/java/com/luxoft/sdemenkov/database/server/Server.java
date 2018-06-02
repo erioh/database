@@ -12,6 +12,7 @@ import com.luxoft.sdemenkov.database.server.util.impl.RequestParserImpl;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class Server {
     private int port = 3000;
@@ -36,6 +37,8 @@ public class Server {
                     responseWriter.write(e.getMessage());
                 }
             }
+        } catch (SocketException e) {
+            start();
         } catch (IOException e) {
             System.out.println(e);
         }

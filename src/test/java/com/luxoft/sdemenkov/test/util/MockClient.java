@@ -15,6 +15,9 @@ public class MockClient {
             while (true) {
                 StringBuilder builder = new StringBuilder();
                 while (!(value = consoleReader.readLine()).equalsIgnoreCase("send")) {
+                    if ("exit".equalsIgnoreCase(value)) {
+                        break;
+                    }
                     builder.append(value);
                     builder.append("\r\n");
                 }
