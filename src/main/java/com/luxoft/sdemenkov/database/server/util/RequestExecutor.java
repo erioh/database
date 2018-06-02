@@ -2,13 +2,12 @@ package com.luxoft.sdemenkov.database.server.util;
 
 import com.luxoft.sdemenkov.database.database.entity.CommonDbObject;
 import com.luxoft.sdemenkov.database.database.entity.SelectResult;
-import com.luxoft.sdemenkov.database.database.entity.Table;
+import com.luxoft.sdemenkov.database.database.entity.table.Table;
 import com.luxoft.sdemenkov.database.database.util.DbObjectSearcher;
 import com.luxoft.sdemenkov.database.server.entity.CommandType;
 import com.luxoft.sdemenkov.database.server.entity.Request;
 import com.luxoft.sdemenkov.database.server.entity.TargetType;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;

@@ -1,8 +1,8 @@
-package com.luxoft.sdemenkov.database.database.entity.impl.xml;
+package com.luxoft.sdemenkov.database.database.entity.table.impl.xml;
 
 import com.luxoft.sdemenkov.database.database.entity.Row;
 import com.luxoft.sdemenkov.database.database.entity.SelectResult;
-import com.luxoft.sdemenkov.database.database.entity.Table;
+import com.luxoft.sdemenkov.database.database.entity.table.Table;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -96,8 +96,8 @@ public class TableXmlTest {
         parameters.put("Columns","column1,column2");
         Table table = new TableXml("testDb/old_table", parameters);
         List<String> nodeList = table.show();
-        assertEquals(3, nodeList.size());
-        assertTrue(nodeList.contains("table"));
+        assertEquals(2, nodeList.size());
+        assertFalse(nodeList.contains("table"));
         assertTrue(nodeList.contains("column1"));
         assertTrue(nodeList.contains("column2"));
     }

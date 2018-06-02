@@ -1,7 +1,7 @@
 package com.luxoft.sdemenkov.database.server;
 
 import com.luxoft.sdemenkov.database.database.factory.DbFactory;
-import com.luxoft.sdemenkov.database.database.factory.impl.file.DbFactoryXml;
+import com.luxoft.sdemenkov.database.database.factory.impl.xml.DbFactoryXml;
 import com.luxoft.sdemenkov.database.database.util.DbObjectSearcher;
 import com.luxoft.sdemenkov.database.server.util.RequestExecutor;
 import com.luxoft.sdemenkov.database.server.util.RequestHandler;

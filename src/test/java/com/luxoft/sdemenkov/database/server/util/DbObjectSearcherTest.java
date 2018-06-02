@@ -1,12 +1,12 @@
 package com.luxoft.sdemenkov.database.server.util;
 
 import com.luxoft.sdemenkov.database.database.entity.CommonDbObject;
-import com.luxoft.sdemenkov.database.database.entity.Schema;
-import com.luxoft.sdemenkov.database.database.entity.Table;
-import com.luxoft.sdemenkov.database.database.entity.impl.xml.SchemaXml;
-import com.luxoft.sdemenkov.database.database.entity.impl.xml.TableXml;
+import com.luxoft.sdemenkov.database.database.entity.schema.Schema;
+import com.luxoft.sdemenkov.database.database.entity.table.Table;
+import com.luxoft.sdemenkov.database.database.entity.schema.impl.dir.SchemaDir;
+import com.luxoft.sdemenkov.database.database.entity.table.impl.xml.TableXml;
 import com.luxoft.sdemenkov.database.database.factory.DbFactory;
-import com.luxoft.sdemenkov.database.database.factory.impl.file.DbFactoryXml;
+import com.luxoft.sdemenkov.database.database.factory.impl.xml.DbFactoryXml;
 import com.luxoft.sdemenkov.database.database.util.DbObjectSearcher;
 import com.luxoft.sdemenkov.database.server.entity.TargetType;
 import org.junit.After;
@@ -52,7 +52,7 @@ public class DbObjectSearcherTest {
 
     @Test
     public void findExistedSchema() {
-        Schema expected = new SchemaXml(schema);
+        Schema expected = new SchemaDir(schema);
         Map<String, String> map = new HashMap<>();
         map.put("TargetName", schemaShort);
         CommonDbObject dbObject = objectSearcher.findDbObject(TargetType.SCHEMA, map);

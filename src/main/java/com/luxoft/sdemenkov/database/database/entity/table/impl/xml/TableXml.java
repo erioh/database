@@ -1,9 +1,9 @@
-package com.luxoft.sdemenkov.database.database.entity.impl.xml;
+package com.luxoft.sdemenkov.database.database.entity.table.impl.xml;
 
 import com.luxoft.sdemenkov.database.database.entity.Column;
 import com.luxoft.sdemenkov.database.database.entity.Row;
 import com.luxoft.sdemenkov.database.database.entity.SelectResult;
-import com.luxoft.sdemenkov.database.database.entity.Table;
+import com.luxoft.sdemenkov.database.database.entity.table.Table;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

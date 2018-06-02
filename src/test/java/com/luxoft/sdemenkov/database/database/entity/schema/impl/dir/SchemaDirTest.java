@@ -1,6 +1,7 @@
-package com.luxoft.sdemenkov.database.database.entity.impl.xml;
+package com.luxoft.sdemenkov.database.database.entity.schema.impl.dir;
 
-import com.luxoft.sdemenkov.database.database.entity.Schema;
+import com.luxoft.sdemenkov.database.database.entity.schema.Schema;
+import com.luxoft.sdemenkov.database.database.entity.schema.impl.dir.SchemaDir;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +14,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class SchemaXmlTest {
+public class SchemaDirTest {
     private final String schemaForDelete = "testDb/schema_for_delete";
     private final String schemaForCreate = "testDb/new_schema";
     private final String schemaWithTables = "testDb/schema_with_tables";
@@ -40,19 +41,19 @@ public class SchemaXmlTest {
 
     @Test
     public void create() {
-        Schema schema = new SchemaXml(schemaForCreate);
+        Schema schema = new SchemaDir(schemaForCreate);
         assertTrue(schema.create());
     }
 
     @Test
     public void drop() {
-        Schema schema = new SchemaXml(schemaForDelete);
+        Schema schema = new SchemaDir(schemaForDelete);
         assertTrue(schema.drop());
     }
 
     @Test
     public void show() {
-        Schema schema = new SchemaXml(schemaWithTables);
+        Schema schema = new SchemaDir(schemaWithTables);
         List<String> tables = schema.show();
         assertEquals(2,tables.size());
         assertTrue(tables.contains("table1.xml"));

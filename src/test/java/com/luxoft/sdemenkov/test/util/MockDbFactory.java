@@ -1,7 +1,7 @@
 package com.luxoft.sdemenkov.test.util;
 
-import com.luxoft.sdemenkov.database.database.entity.Schema;
-import com.luxoft.sdemenkov.database.database.entity.Table;
+import com.luxoft.sdemenkov.database.database.entity.schema.Schema;
+import com.luxoft.sdemenkov.database.database.entity.table.Table;
 import com.luxoft.sdemenkov.database.database.factory.DbFactory;
 
 import java.util.Map;

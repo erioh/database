@@ -1,7 +1,6 @@
-package com.luxoft.sdemenkov.database.database.entity.impl.xml;
+package com.luxoft.sdemenkov.database.database.entity.schema.impl.dir;
 
-
-import com.luxoft.sdemenkov.database.database.entity.Schema;
+import com.luxoft.sdemenkov.database.database.entity.schema.Schema;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -9,11 +8,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class SchemaXml implements Schema {
+public class SchemaDir implements Schema {
     private final String name;
     private File file;
 
-    public SchemaXml(String name) {
+    public SchemaDir(String name) {
         this.name = name;
         file = new File(name);
 
@@ -53,7 +52,7 @@ public class SchemaXml implements Schema {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("SchemaXml{");
+        final StringBuilder sb = new StringBuilder("SchemaDir{");
         sb.append("name='").append(name).append('\'');
         sb.append(", file=").append(file);
         sb.append('}');
@@ -64,7 +63,7 @@ public class SchemaXml implements Schema {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SchemaXml that = (SchemaXml) o;
+        SchemaDir that = (SchemaDir) o;
         return Objects.equals(name, that.name) &&
                 Objects.equals(file, that.file);
     }
