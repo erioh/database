@@ -20,9 +20,9 @@ import static junit.framework.TestCase.assertTrue;
 
 public class TableXmlTest {
     private final String expectedBody = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><table/>";
-    private String expectedBodyAfterInsert = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><table><row><column1>value 1</column1><column2>second value</column2></row><row><column1>value 1</column1><column2>second value</column2></row><row><column1>value 1</column1><column2>second value</column2></row></table>";
-    private String expectedBodyWithData = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><table><row><column1>row 1 value 1</column1><column2>row 1second value</column2></row><row><column1>row 2 value 1</column1><column2>row 2 second value</column2></row><row><column1>row 3 value 1</column1><column2>row 3 second value</column2></row></table>";
-    private String expectedMetadata ="<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><table><column1/><column2/></table>";
+    private final String expectedBodyAfterInsert = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><table><row><column1>value 1</column1><column2>second value</column2></row><row><column1>value 1</column1><column2>second value</column2></row><row><column1>value 1</column1><column2>second value</column2></row></table>";
+    private final String expectedBodyWithData = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><table><row><column1>row 1 value 1</column1><column2>row 1second value</column2></row><row><column1>row 2 value 1</column1><column2>row 2 second value</column2></row><row><column1>row 3 value 1</column1><column2>row 3 second value</column2></row></table>";
+    private final String expectedMetadata ="<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><table><column1/><column2/></table>";
     private File root;
     private File file;
     private File fileMetadata;
@@ -142,7 +142,7 @@ public class TableXmlTest {
     }
 
     @Test
-    public void select() throws IOException {
+    public void select() {
         String expected = "[Row{columnList=[Column{columnName='column1', columnValue='row 1 value 1'}, Column{columnName='column2', columnValue='row 1second value'}]}, Row{columnList=[Column{columnName='column1', columnValue='row 2 value 1'}, Column{columnName='column2', columnValue='row 2 second value'}]}, Row{columnList=[Column{columnName='column1', columnValue='row 3 value 1'}, Column{columnName='column2', columnValue='row 3 second value'}]}]";
         Map<String, String> parameters = new HashMap<>();
         Table table = new TableXml("testDb/data_table", parameters);

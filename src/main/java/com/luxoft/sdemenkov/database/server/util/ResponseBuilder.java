@@ -3,12 +3,11 @@ package com.luxoft.sdemenkov.database.server.util;
 import com.luxoft.sdemenkov.db.api.SelectResult;
 import com.luxoft.sdemenkov.db.api.Response;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ResponseBuilder {
-    private List<String> messageList = new ArrayList<>();
+    private final List<String> messageList = new ArrayList<>();
     private SelectResult result;
 
     private ResponseBuilder() {
@@ -18,7 +17,7 @@ public class ResponseBuilder {
         return new ResponseBuilder();
     }
 
-    public void addMessage(String string) throws IOException {
+    public void addMessage(String string) {
         messageList.add(string);
     }
 

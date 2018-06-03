@@ -1,7 +1,5 @@
 package com.luxoft.sdemenkov.database.server.util.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.luxoft.sdemenkov.database.server.util.RequestParser;
 import com.luxoft.sdemenkov.db.api.CommandType;
 import com.luxoft.sdemenkov.db.api.Request;
@@ -32,7 +30,7 @@ public class RequestParserJsonTest {
     }
 
     @Before
-    public void setUp() throws JsonProcessingException {
+    public void setUp() {
         requestParser = new RequestParserJson();
         String validString = "{\"commandType\":\"CREATE\",\"targetType\":\"TABLE\",\"requestParametersMap\":{\"TargetName\":\"NEW_TABLE\"}}\r\nend";
         ByteArrayInputStream validInputStream = new ByteArrayInputStream(validString.getBytes());

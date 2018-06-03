@@ -2,7 +2,6 @@ package com.luxoft.sdemenkov.test.util;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.StringJoiner;
 
 public class MockClient {
     public static void main(String[] args) {

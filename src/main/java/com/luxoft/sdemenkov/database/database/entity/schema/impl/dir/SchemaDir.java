@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class SchemaDir implements Schema {
     private final String name;
-    private File file;
+    private final File file;
 
     public SchemaDir(String name) {
         this.name = name;

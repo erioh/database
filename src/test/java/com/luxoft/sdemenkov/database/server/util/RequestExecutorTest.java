@@ -16,8 +16,8 @@ public class RequestExecutorTest {
     private RequestExecutor requestExecutor;
     private BufferedWriter socketWriter;
     private File root;
-    File file;
-    File meta;
+    private File file;
+    private File meta;
 
     @Test
     public void execute() {

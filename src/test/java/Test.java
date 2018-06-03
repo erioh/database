@@ -56,7 +56,7 @@ public class Test {
             System.out.println(1);
         }
         int prev1 = 1;
-        int prev2 = 1;
+        int prev2;
         int fibonacci = 1;
         for (int i = 3; i < n + 1; i++) {
             prev2 = prev1;

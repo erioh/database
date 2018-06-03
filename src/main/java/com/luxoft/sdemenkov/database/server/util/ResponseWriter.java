@@ -6,7 +6,6 @@ import com.luxoft.sdemenkov.db.api.Response;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.net.SocketException;
 
 public class ResponseWriter {
     private BufferedWriter writer;

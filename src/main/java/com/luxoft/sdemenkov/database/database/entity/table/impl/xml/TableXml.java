@@ -131,7 +131,6 @@ public class TableXml implements Table {
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(metadataFile);
             Element documentElement = document.getDocumentElement();
-            String root = documentElement.getTagName();
             List<String> listOfNodes = new ArrayList<>();
             NodeList childNodes = documentElement.getChildNodes();
             int length = childNodes.getLength();

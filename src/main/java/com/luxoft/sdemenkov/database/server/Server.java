@@ -16,7 +16,7 @@ public class Server {
     private int port = 3000;
     private String rootResourceFolder;
     private RequestHandler requestHandler;
-    ResponseWriter responseWriter;
+    private ResponseWriter responseWriter;
 
     public void start() {
         requestHandler = new RequestHandler();
@@ -40,13 +40,13 @@ public class Server {
         } catch (SocketException| SocketRuntimeException e) {
             start();
         } catch (IOException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
 
 
     }
 
-    public void configure() {
+    private void configure() {
         DbObjectSearcher searcher = new DbObjectSearcher();
         DbFactory factory = new DbFactoryXml();
         RequestParser parser = new RequestParserJson();
