@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.COLUMNS;
+import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.COLUMNS_VALUES;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
@@ -69,7 +71,7 @@ public class TableXmlTest {
     @Test
     public void create() throws IOException {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("Columns","column1,column2");
+        parameters.put(COLUMNS,"column1,column2");
         Table table = new TableXml("testDb/new_table", parameters);
         assertTrue(table.create());
         assertTrue(file.exists());
@@ -83,7 +85,7 @@ public class TableXmlTest {
     @Test
     public void drop() {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("Columns","column1,column2");
+        parameters.put(COLUMNS,"column1,column2");
         Table table = new TableXml("testDb/old_table", parameters);
         table.drop();
         assertFalse(existedFile.exists());
@@ -93,7 +95,7 @@ public class TableXmlTest {
     @Test
     public void show() {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("Columns","column1,column2");
+        parameters.put(COLUMNS,"column1,column2");
         Table table = new TableXml("testDb/old_table", parameters);
         List<String> nodeList = table.show();
         assertEquals(2, nodeList.size());
@@ -105,7 +107,7 @@ public class TableXmlTest {
     @Test
     public void exists() {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("Columns","column1,column2");
+        parameters.put(COLUMNS,"column1,column2");
         Table table = new TableXml("testDb/old_table", parameters);
         assertTrue(table.exists());
     }
@@ -113,14 +115,14 @@ public class TableXmlTest {
     @Test
     public void existsNot() {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("Columns","column1,column2");
+        parameters.put(COLUMNS,"column1,column2");
         Table table = new TableXml("testDb/new_table", parameters);
         assertFalse(table.exists());
     }
     @Test
     public void existsWithoutMetadata() {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("Columns","column1,column2");
+        parameters.put(COLUMNS,"column1,column2");
         Table table = new TableXml("testDb/old_table", parameters);
         existedFileMeta.delete();
         assertFalse(table.exists());
@@ -129,8 +131,8 @@ public class TableXmlTest {
     @Test
     public void insert() throws IOException {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("Columns","column1,column2");
-        parameters.put("ColumnsValues","value 1,second value");
+        parameters.put(COLUMNS,"column1,column2");
+        parameters.put(COLUMNS_VALUES,"value 1,second value");
         Table table = new TableXml("testDb/old_table", parameters);
         table.insert();
         table.insert();

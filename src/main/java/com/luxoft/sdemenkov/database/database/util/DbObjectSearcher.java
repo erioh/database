@@ -6,12 +6,14 @@ import com.luxoft.sdemenkov.database.server.entity.TargetType;
 
 import java.util.Map;
 
+import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.TARGET_NAME;
+
 public class DbObjectSearcher {
     private DbFactory dbFactory;
     private String rootResourceFolder;
 
     public CommonDbObject findDbObject(TargetType targetType, Map<String, String> requestParametersMap) {
-        String targetName =  requestParametersMap.get("TargetName");
+        String targetName =  requestParametersMap.get(TARGET_NAME);
         if (targetName == null) {
             throw new RuntimeException("TargetName is not provided");
         }

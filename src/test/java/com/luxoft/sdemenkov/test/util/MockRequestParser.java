@@ -9,11 +9,13 @@ import java.io.BufferedReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.TARGET_NAME;
+
 public class MockRequestParser implements RequestParser {
     @Override
     public Request parse(BufferedReader socketReader) {
         Map<String, String> map = new HashMap<>();
-        map.put("TargetName", "name");
+        map.put(TARGET_NAME, "name");
         return new Request(CommandType.SHOW, TargetType.SCHEMA, map);
     }
 }

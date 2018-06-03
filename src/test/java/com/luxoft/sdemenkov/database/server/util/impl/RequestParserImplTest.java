@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.TARGET_NAME;
 import static junit.framework.TestCase.assertEquals;
 
 public class RequestParserImplTest {
@@ -35,7 +36,7 @@ public class RequestParserImplTest {
         ByteArrayInputStream validInputStream = new ByteArrayInputStream(validString.getBytes());
         validReader = new BufferedReader(new InputStreamReader(validInputStream));
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("TargetName","NEW_TABLE");
+        parameters.put(TARGET_NAME,"NEW_TABLE");
         validRequest = new Request(CommandType.CREATE, TargetType.TABLE,parameters);
 
 

@@ -19,6 +19,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.TARGET_NAME;
 import static org.junit.Assert.*;
 
 public class DbObjectSearcherTest {
@@ -54,7 +55,7 @@ public class DbObjectSearcherTest {
     public void findExistedSchema() {
         Schema expected = new SchemaDir(schema);
         Map<String, String> map = new HashMap<>();
-        map.put("TargetName", schemaShort);
+        map.put(TARGET_NAME, schemaShort);
         CommonDbObject dbObject = objectSearcher.findDbObject(TargetType.SCHEMA, map);
         assertEquals(expected, dbObject);
         assertTrue(dbObject.exists());
@@ -62,14 +63,14 @@ public class DbObjectSearcherTest {
     @Test
     public void findNotExistedSchema() {
         Map<String, String> map = new HashMap<>();
-        map.put("TargetName", "wrong");
+        map.put(TARGET_NAME, "wrong");
         CommonDbObject dbObject = objectSearcher.findDbObject(TargetType.SCHEMA, map);
         assertFalse(dbObject.exists());
     }
     @Test
     public void findExistedTable() {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("TargetName", schemaShort+"/table1");
+        parameters.put(TARGET_NAME, schemaShort+"/table1");
         Table expected = new TableXml(schema+"/table1", parameters);
         CommonDbObject dbObject = objectSearcher.findDbObject(TargetType.TABLE, parameters);
         assertEquals(expected, dbObject);
@@ -78,7 +79,7 @@ public class DbObjectSearcherTest {
     @Test
     public void findNotExistedTable() {
         Map<String, String> parameters = new HashMap<>();
-        parameters.put("TargetName", schemaShort+"/table2.xml");
+        parameters.put(TARGET_NAME, schemaShort+"/table2.xml");
         Table expected = new TableXml(schema+"/table2.xml", parameters);
         CommonDbObject dbObject = objectSearcher.findDbObject(TargetType.TABLE, parameters);
         assertEquals(expected, dbObject);

@@ -25,6 +25,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.COLUMNS;
+import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.COLUMNS_VALUES;
+
 public class TableXml implements Table {
     private static final String TABLE_ROOT = "table";
     private static final String ROW = "row";
@@ -71,7 +74,7 @@ public class TableXml implements Table {
     }
 
     private String[] parseColumns() {
-        String columnsParameter = parameters.get("Columns");
+        String columnsParameter = parameters.get(COLUMNS);
         if (columnsParameter == null) {
             throw new RuntimeException("Columns are not provided");
         }
@@ -79,7 +82,7 @@ public class TableXml implements Table {
     }
 
     private String[] parseColumnsValues() {
-        String columnsParameter = parameters.get("ColumnsValues");
+        String columnsParameter = parameters.get(COLUMNS_VALUES);
         if (columnsParameter == null) {
             throw new RuntimeException("ColumnsValues are not provided");
         }

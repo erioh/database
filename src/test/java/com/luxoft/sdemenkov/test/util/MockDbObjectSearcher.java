@@ -8,6 +8,8 @@ import com.luxoft.sdemenkov.database.database.util.DbObjectSearcher;
 
 import java.util.Map;
 
+import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.TARGET_NAME;
+
 public class MockDbObjectSearcher extends DbObjectSearcher {
     @Override
     public CommonDbObject findDbObject(TargetType targetType, Map<String, String> requestParametersMap) {
@@ -15,7 +17,7 @@ public class MockDbObjectSearcher extends DbObjectSearcher {
             return new SchemaDir("dbTest/schema");
         }
         if (targetType == TargetType.TABLE){
-            String targetName = requestParametersMap.get("TargetName");
+            String targetName = requestParametersMap.get(TARGET_NAME);
             return new TableXml(targetName,requestParametersMap);
         }
         return null;
