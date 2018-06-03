@@ -1,18 +1,21 @@
 package com.luxoft.sdemenkov.database.server.util;
 
-import com.luxoft.sdemenkov.database.server.entity.Request;
+
+import com.luxoft.sdemenkov.db.api.Response;
+import com.luxoft.sdemenkov.db.api.Request;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 
 public class RequestHandler {
     private BufferedReader socketReader;
     private RequestParser requestParser;
     private RequestExecutor requestExecutor;
+    private ResponseWriter responseWriter;
 
     public void handle() {
         Request request = requestParser.parse(socketReader);
-        requestExecutor.execute(request);
+        Response response = requestExecutor.execute(request);
+        responseWriter.write(response);
     }
 
     public void setSocketReader(BufferedReader socketReader) {
@@ -25,5 +28,9 @@ public class RequestHandler {
 
     public void setRequestParser(RequestParser requestParser) {
         this.requestParser = requestParser;
+    }
+
+    public void setResponseWriter(ResponseWriter responseWriter) {
+        this.responseWriter = responseWriter;
     }
 }

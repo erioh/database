@@ -1,9 +1,11 @@
 package com.luxoft.sdemenkov.database.server.util.impl;
 
-import com.luxoft.sdemenkov.database.server.entity.CommandType;
-import com.luxoft.sdemenkov.database.server.entity.Request;
-import com.luxoft.sdemenkov.database.server.entity.TargetType;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.luxoft.sdemenkov.database.server.util.RequestParser;
+import com.luxoft.sdemenkov.db.api.CommandType;
+import com.luxoft.sdemenkov.db.api.Request;
+import com.luxoft.sdemenkov.db.api.TargetType;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,10 +16,10 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.TARGET_NAME;
+import static com.luxoft.sdemenkov.db.api.AdditionalRequestParameters.TARGET_NAME;
 import static junit.framework.TestCase.assertEquals;
 
-public class RequestParserImplTest {
+public class RequestParserJsonTest {
     private RequestParser requestParser;
     private BufferedReader validReader;
     private Request validRequest;
@@ -26,20 +28,18 @@ public class RequestParserImplTest {
     public void parse() {
 
         Request validParsedRequest = requestParser.parse(validReader);
-        assertEquals(validRequest,validParsedRequest);
+        assertEquals(validRequest, validParsedRequest);
     }
 
     @Before
-    public void setUp() {
-        requestParser = new RequestParserImpl();
-        String validString = "CREATE\r\nTABLE\r\nTargetName:NEW_TABLE\r\nend\r\n";
+    public void setUp() throws JsonProcessingException {
+        requestParser = new RequestParserJson();
+        String validString = "{\"commandType\":\"CREATE\",\"targetType\":\"TABLE\",\"requestParametersMap\":{\"TargetName\":\"NEW_TABLE\"}}\r\nend";
         ByteArrayInputStream validInputStream = new ByteArrayInputStream(validString.getBytes());
         validReader = new BufferedReader(new InputStreamReader(validInputStream));
         Map<String, String> parameters = new HashMap<>();
-        parameters.put(TARGET_NAME,"NEW_TABLE");
-        validRequest = new Request(CommandType.CREATE, TargetType.TABLE,parameters);
-
-
+        parameters.put(TARGET_NAME, "NEW_TABLE");
+        validRequest = new Request(CommandType.CREATE, TargetType.TABLE, parameters);
     }
 
     @After

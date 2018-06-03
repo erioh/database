@@ -1,12 +1,13 @@
 package com.luxoft.sdemenkov.test.util;
 
-import com.luxoft.sdemenkov.database.server.entity.Request;
+import com.luxoft.sdemenkov.db.api.Response;
 import com.luxoft.sdemenkov.database.server.util.RequestExecutor;
+import com.luxoft.sdemenkov.db.api.Request;
 
 public class MockRequestExecutor extends RequestExecutor {
 
     @Override
-    public void execute(Request request) {
-        
+    public Response execute(Request request) {
+        return new Response();
     }
 }

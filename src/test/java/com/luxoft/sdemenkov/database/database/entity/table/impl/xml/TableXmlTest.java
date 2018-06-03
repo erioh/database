@@ -1,7 +1,7 @@
 package com.luxoft.sdemenkov.database.database.entity.table.impl.xml;
 
-import com.luxoft.sdemenkov.database.database.entity.Row;
-import com.luxoft.sdemenkov.database.database.entity.SelectResult;
+import com.luxoft.sdemenkov.db.api.Row;
+import com.luxoft.sdemenkov.db.api.SelectResult;
 import com.luxoft.sdemenkov.database.database.entity.table.Table;
 import org.junit.After;
 import org.junit.Before;
@@ -12,8 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.COLUMNS;
-import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.COLUMNS_VALUES;
+import static com.luxoft.sdemenkov.db.api.AdditionalRequestParameters.COLUMNS;
+import static com.luxoft.sdemenkov.db.api.AdditionalRequestParameters.COLUMNS_VALUES;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;

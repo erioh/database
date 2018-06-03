@@ -1,7 +1,6 @@
 package com.luxoft.sdemenkov.database.database.entity.schema.impl.dir;
 
 import com.luxoft.sdemenkov.database.database.entity.schema.Schema;
-import com.luxoft.sdemenkov.database.database.entity.schema.impl.dir.SchemaDir;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

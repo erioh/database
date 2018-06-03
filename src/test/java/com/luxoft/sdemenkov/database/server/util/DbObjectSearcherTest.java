@@ -1,5 +1,6 @@
 package com.luxoft.sdemenkov.database.server.util;
 
+import static com.luxoft.sdemenkov.db.api.AdditionalRequestParameters.TARGET_NAME;
 import com.luxoft.sdemenkov.database.database.entity.CommonDbObject;
 import com.luxoft.sdemenkov.database.database.entity.schema.Schema;
 import com.luxoft.sdemenkov.database.database.entity.table.Table;
@@ -8,18 +9,16 @@ import com.luxoft.sdemenkov.database.database.entity.table.impl.xml.TableXml;
 import com.luxoft.sdemenkov.database.database.factory.DbFactory;
 import com.luxoft.sdemenkov.database.database.factory.impl.xml.DbFactoryXml;
 import com.luxoft.sdemenkov.database.database.util.DbObjectSearcher;
-import com.luxoft.sdemenkov.database.server.entity.TargetType;
+import com.luxoft.sdemenkov.db.api.TargetType;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.TARGET_NAME;
 import static org.junit.Assert.*;
 
 public class DbObjectSearcherTest {

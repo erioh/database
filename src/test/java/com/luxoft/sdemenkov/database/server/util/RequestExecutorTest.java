@@ -1,7 +1,7 @@
 package com.luxoft.sdemenkov.database.server.util;
 
 import com.luxoft.sdemenkov.database.database.util.DbObjectSearcher;
-import com.luxoft.sdemenkov.database.server.entity.Request;
+import com.luxoft.sdemenkov.db.api.Request;
 import com.luxoft.sdemenkov.test.util.MockDbObjectSearcher;
 import com.luxoft.sdemenkov.test.util.RequestCreator;
 import org.junit.After;
@@ -39,7 +39,6 @@ public class RequestExecutorTest {
         responseWriter.setWriter(socketWriter);
         DbObjectSearcher dbObjectSearcher = new MockDbObjectSearcher();
         requestExecutor.setDbObjectSearcher(dbObjectSearcher);
-        requestExecutor.setResponseWriter(responseWriter);
     }
 
     @After

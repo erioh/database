@@ -3,11 +3,9 @@ package com.luxoft.sdemenkov.database.server;
 import com.luxoft.sdemenkov.database.database.factory.DbFactory;
 import com.luxoft.sdemenkov.database.database.factory.impl.xml.DbFactoryXml;
 import com.luxoft.sdemenkov.database.database.util.DbObjectSearcher;
-import com.luxoft.sdemenkov.database.server.util.RequestExecutor;
-import com.luxoft.sdemenkov.database.server.util.RequestHandler;
-import com.luxoft.sdemenkov.database.server.util.RequestParser;
-import com.luxoft.sdemenkov.database.server.util.ResponseWriter;
-import com.luxoft.sdemenkov.database.server.util.impl.RequestParserImpl;
+import com.luxoft.sdemenkov.database.exception.SocketRuntimeException;
+import com.luxoft.sdemenkov.database.server.util.*;
+import com.luxoft.sdemenkov.database.server.util.impl.RequestParserJson;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -34,10 +32,12 @@ public class Server {
                 try {
                     requestHandler.handle();
                 } catch (RuntimeException e) {
-                    responseWriter.write(e.getMessage());
+                    ResponseBuilder builder = ResponseBuilder.start();
+                    builder.addMessage(e.getMessage());
+                    responseWriter.write(builder.build());
                 }
             }
-        } catch (SocketException e) {
+        } catch (SocketException| SocketRuntimeException e) {
             start();
         } catch (IOException e) {
             System.out.println(e);
@@ -49,7 +49,7 @@ public class Server {
     public void configure() {
         DbObjectSearcher searcher = new DbObjectSearcher();
         DbFactory factory = new DbFactoryXml();
-        RequestParser parser = new RequestParserImpl();
+        RequestParser parser = new RequestParserJson();
         RequestExecutor executor = new RequestExecutor();
         responseWriter = new ResponseWriter();
 
@@ -57,10 +57,10 @@ public class Server {
         searcher.setRootResourceFolder(rootResourceFolder);
 
         executor.setDbObjectSearcher(searcher);
-        executor.setResponseWriter(responseWriter);
 
         requestHandler.setRequestParser(parser);
         requestHandler.setRequestExecutor(executor);
+        requestHandler.setResponseWriter(responseWriter);
     }
 
     public void setPort(int port) {

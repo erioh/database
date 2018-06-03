@@ -1,6 +1,7 @@
 package com.luxoft.sdemenkov.database.server.util;
 
-import com.luxoft.sdemenkov.database.server.entity.Request;
+
+import com.luxoft.sdemenkov.db.api.Request;
 
 import java.io.BufferedReader;
 

@@ -3,12 +3,12 @@ package com.luxoft.sdemenkov.test.util;
 import com.luxoft.sdemenkov.database.database.entity.CommonDbObject;
 import com.luxoft.sdemenkov.database.database.entity.schema.impl.dir.SchemaDir;
 import com.luxoft.sdemenkov.database.database.entity.table.impl.xml.TableXml;
-import com.luxoft.sdemenkov.database.server.entity.TargetType;
+import com.luxoft.sdemenkov.db.api.TargetType;
 import com.luxoft.sdemenkov.database.database.util.DbObjectSearcher;
 
 import java.util.Map;
 
-import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.TARGET_NAME;
+import static com.luxoft.sdemenkov.db.api.AdditionalRequestParameters.TARGET_NAME;
 
 public class MockDbObjectSearcher extends DbObjectSearcher {
     @Override

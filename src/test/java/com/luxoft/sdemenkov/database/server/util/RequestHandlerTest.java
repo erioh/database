@@ -2,6 +2,7 @@ package com.luxoft.sdemenkov.database.server.util;
 
 import com.luxoft.sdemenkov.test.util.MockRequestExecutor;
 import com.luxoft.sdemenkov.test.util.MockRequestParser;
+import com.luxoft.sdemenkov.test.util.MockResponseWriter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +16,7 @@ public class RequestHandlerTest {
     private InputStream inputStream;
     private OutputStream outputStream;
     private RequestExecutor requestExecutor;
+    private ResponseWriter responseWriter;
 
     @Test
     public void handle() {
@@ -30,10 +32,12 @@ public class RequestHandlerTest {
         writer = new BufferedWriter(new OutputStreamWriter(outputStream));
         RequestParser requestParser = new MockRequestParser();
         requestExecutor = new MockRequestExecutor();
+        responseWriter = new MockResponseWriter();
         handler = new RequestHandler();
         handler.setSocketReader(reader);
         handler.setRequestParser(requestParser);
         handler.setRequestExecutor(requestExecutor);
+        handler.setResponseWriter(responseWriter);
 
     }
 

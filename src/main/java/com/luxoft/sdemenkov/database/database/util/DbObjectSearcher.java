@@ -2,11 +2,12 @@ package com.luxoft.sdemenkov.database.database.util;
 
 import com.luxoft.sdemenkov.database.database.entity.CommonDbObject;
 import com.luxoft.sdemenkov.database.database.factory.DbFactory;
-import com.luxoft.sdemenkov.database.server.entity.TargetType;
+import com.luxoft.sdemenkov.db.api.TargetType;
 
 import java.util.Map;
 
-import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.TARGET_NAME;
+import static com.luxoft.sdemenkov.db.api.AdditionalRequestParameters.TARGET_NAME;
+
 
 public class DbObjectSearcher {
     private DbFactory dbFactory;

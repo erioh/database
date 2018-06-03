@@ -1,14 +1,14 @@
 package com.luxoft.sdemenkov.test.util;
 
-import com.luxoft.sdemenkov.database.server.entity.CommandType;
-import com.luxoft.sdemenkov.database.server.entity.Request;
-import com.luxoft.sdemenkov.database.server.entity.TargetType;
+import com.luxoft.sdemenkov.db.api.CommandType;
+import com.luxoft.sdemenkov.db.api.Request;
+import com.luxoft.sdemenkov.db.api.TargetType;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.COLUMNS;
-import static com.luxoft.sdemenkov.database.common.AdditionalRequestParameters.TARGET_NAME;
+import static com.luxoft.sdemenkov.db.api.AdditionalRequestParameters.COLUMNS;
+import static com.luxoft.sdemenkov.db.api.AdditionalRequestParameters.TARGET_NAME;
 
 public class RequestCreator {
     public static Request getCreateTableRequest() {
