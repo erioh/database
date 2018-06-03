@@ -6,6 +6,9 @@ import com.luxoft.sdemenkov.database.database.util.DbObjectSearcher;
 import com.luxoft.sdemenkov.database.exception.SocketRuntimeException;
 import com.luxoft.sdemenkov.database.server.util.*;
 import com.luxoft.sdemenkov.database.server.util.impl.RequestParserJson;
+import com.luxoft.sdemenkov.database.server.util.ResponseWriter;
+import com.luxoft.sdemenkov.database.server.util.ResponseMapper;
+import com.luxoft.sdemenkov.database.server.util.impl.ResponseMapperJson;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -52,7 +55,9 @@ public class Server {
         RequestParser parser = new RequestParserJson();
         RequestExecutor executor = new RequestExecutor();
         responseWriter = new ResponseWriter();
+        ResponseMapper responseMapper = new ResponseMapperJson();
 
+        responseWriter.setResponseMapper(responseMapper);
         searcher.setDbFactory(factory);
         searcher.setRootResourceFolder(rootResourceFolder);
 
