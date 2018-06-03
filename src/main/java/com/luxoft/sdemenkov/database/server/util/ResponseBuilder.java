@@ -1,7 +1,7 @@
 package com.luxoft.sdemenkov.database.server.util;
 
-import com.luxoft.sdemenkov.db.api.SelectResult;
 import com.luxoft.sdemenkov.db.api.Response;
+import com.luxoft.sdemenkov.db.api.SelectResult;
 
 import java.util.ArrayList;
 import java.util.List;

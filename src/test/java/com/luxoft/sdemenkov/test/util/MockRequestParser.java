@@ -1,9 +1,9 @@
 package com.luxoft.sdemenkov.test.util;
 
+import com.luxoft.sdemenkov.database.server.util.RequestParser;
 import com.luxoft.sdemenkov.db.api.CommandType;
 import com.luxoft.sdemenkov.db.api.Request;
 import com.luxoft.sdemenkov.db.api.TargetType;
-import com.luxoft.sdemenkov.database.server.util.RequestParser;
 
 import java.io.BufferedReader;
 import java.util.HashMap;

@@ -3,8 +3,8 @@ package com.luxoft.sdemenkov.test.util;
 import com.luxoft.sdemenkov.database.database.entity.CommonDbObject;
 import com.luxoft.sdemenkov.database.database.entity.schema.impl.dir.SchemaDir;
 import com.luxoft.sdemenkov.database.database.entity.table.impl.xml.TableXml;
-import com.luxoft.sdemenkov.db.api.TargetType;
 import com.luxoft.sdemenkov.database.database.util.DbObjectSearcher;
+import com.luxoft.sdemenkov.db.api.TargetType;
 
 import java.util.Map;
 

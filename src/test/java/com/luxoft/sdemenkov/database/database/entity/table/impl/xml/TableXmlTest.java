@@ -1,8 +1,8 @@
 package com.luxoft.sdemenkov.database.database.entity.table.impl.xml;
 
+import com.luxoft.sdemenkov.database.database.entity.table.Table;
 import com.luxoft.sdemenkov.db.api.Row;
 import com.luxoft.sdemenkov.db.api.SelectResult;
-import com.luxoft.sdemenkov.database.database.entity.table.Table;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,9 +14,7 @@ import java.util.Map;
 
 import static com.luxoft.sdemenkov.db.api.AdditionalRequestParameters.COLUMNS;
 import static com.luxoft.sdemenkov.db.api.AdditionalRequestParameters.COLUMNS_VALUES;
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertFalse;
-import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.*;
 
 public class TableXmlTest {
     private final String expectedBody = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><table/>";
